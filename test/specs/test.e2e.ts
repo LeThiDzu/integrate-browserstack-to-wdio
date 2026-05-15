@@ -5,7 +5,10 @@ import SecurePage from '../pageobjects/secure.page.js'
 describe('My Login application', () => {
     it('should login with valid credentials', async () => {
         await LoginPage.open()
-
+        await browser.executeScript(
+            'browserstack_executor: {"action": "screenshot", "arguments": {"name": "After Payment Success"}}', 
+            []
+        );
         await LoginPage.login('tomsmith', 'SuperSecretPassword!')
         await expect(SecurePage.flashAlert).toBeExisting()
         await expect(SecurePage.flashAlert).toHaveText(
